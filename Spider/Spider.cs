@@ -2,24 +2,30 @@
 {
     public class Spider
     {
+
+        /// <summary>
+        /// Location and orientation of spider
+        /// </summary>
+        private uint X;
+        private uint Y;
+        private Orientation orientation;
+
         /// <summary>
         /// Directions the spider may face and turn
-        /// Do not re-order these enums, the values are used.
+        /// Enum values are chosen so that:
+        /// 
+        /// newOrientation = oldOrientation + TurnDirection (modulo 4)
         /// </summary>
         public enum Orientation { Up = 0, Right = 1, Down = 2, Left = 3 };
         private enum TurnDirection {  TurnLeft = -1,  TurnRight = 1 };
 
         /// <summary>
-        /// Location and orientation of spider
-        /// </summary>
-        public uint currentX { get; private set; }
-        public uint currentY { get; private set; }
-        public Orientation orientation { get; private set; }
-
-        /// <summary>
-        /// Wall the spider is on
+        /// Wall te spider is on
         /// </summary>
         private Wall wall;
+
+        // Current position and orientation
+        public string Position => $"X: {X} Y: {Y}  Facing: {orientation}";
 
         /// <summary>
         /// Constructor. Initial (X,Y) and orientation should be given.
@@ -37,8 +43,8 @@
             } 
 
             //  Record the start position
-            currentX = initialX;
-            currentY = initialY;
+            X = initialX;
+            Y = initialY;
             orientation = initialOrientation;
             this.wall = wall;
         }
@@ -92,33 +98,33 @@
         private void Creep()
         {
             // Calculate the destination X,Y coords based on orientation
-            var newX = currentX;
-            var newY = currentY;
+            var newX = X;
+            var newY = Y;
 
             switch (orientation)
             {
                 case Orientation.Up:
-                    newY = currentY + 1;
+                    newY = Y + 1;
                     break;
 
                 case Orientation.Down:
-                    if (currentY == 0)
+                    if (Y == 0)
                     {
                         throw new ArgumentOutOfRangeException("Cannot move further down.");
                     }
-                    newY = currentY - 1;
+                    newY = Y - 1;
                     break;
 
                 case Orientation.Left:
-                    if (currentX == 0)
+                    if (X == 0)
                     {
                         throw new ArgumentOutOfRangeException("Cannot move further left.");
                     }
-                    newX = currentX - 1;
+                    newX = X - 1;
                     break;
 
                 case Orientation.Right:
-                    newX = currentX + 1;
+                    newX = X + 1;
                     break;
             }
 
@@ -130,8 +136,8 @@
             }
 
             // Move the spider
-            currentX = newX;
-            currentY = newY;
+            X = newX;
+            Y = newY;
 
             return;
         }

@@ -14,9 +14,7 @@ namespace Test
 
             spider.Obey(instructions);
 
-            Assert.AreEqual<uint>(5, spider.currentX);
-            Assert.AreEqual<uint>(7, spider.currentY);
-            Assert.AreEqual(Spider.Orientation.Right, spider.orientation);
+            Assert.AreEqual("X: 5 Y: 7  Facing: Right", spider.Position);
         }
     }
 }
