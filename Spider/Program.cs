@@ -19,7 +19,11 @@ try
 
     var commandLine = Console.ReadLine();
     var tokens = Parser.Parse(commandLine!, "^[0-9]*$", "^[0-9]*$");
-    var wall = new Wall(uint.Parse(tokens[0]), uint.Parse(tokens[1]));
+
+    var maxX = uint.Parse(tokens[0]);
+    var maxY = uint.Parse(tokens[1]);
+
+    var wall = new Wall(maxX, maxY);
 
     // Create and place the spider
     Console.WriteLine("Enter spider start state as \"X Y Up|Down|Left|Right\":");
