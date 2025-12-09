@@ -2,7 +2,6 @@
 {
     public class Spider
     {
-
         /// <summary>
         /// Location and orientation of spider
         /// </summary>
@@ -14,13 +13,14 @@
         /// Directions the spider may face and turn
         /// Enum values are chosen so that:
         /// 
-        /// newOrientation = oldOrientation + TurnDirection (modulo 4)
+        ///     newOrientation = oldOrientation + TurnDirection (modulo 4)
+        /// 
         /// </summary>
         public enum Orientation { Up = 0, Right = 1, Down = 2, Left = 3 };
-        private enum TurnDirection {  TurnLeft = -1,  TurnRight = 1 };
+        private enum TurnDirection { TurnLeft = -1, TurnRight = 1 };
 
         /// <summary>
-        /// Wall te spider is on
+        /// Wall the spider is on
         /// </summary>
         private Wall wall;
 
