@@ -43,5 +43,17 @@ namespace Test
                 "Specified argument was out of the range of valid values. (Parameter 'Cannot move further left.')",
                 ex.Message);
         }
+
+        [TestMethod]
+        public void Test3_NegativeTurn()
+        {
+            var wall = new Wall(10, 10);
+            var spider = new Spider(wall, 5, 5, Spider.Orientation.Up);
+            var instructions = "L";
+
+            spider.Obey(instructions);
+
+            Assert.AreEqual("X: 5 Y: 5  Facing: Left", spider.Position);
+        }
     }
 }
